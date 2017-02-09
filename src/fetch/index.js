@@ -1,5 +1,5 @@
 const token = 'koOheljmQX'
-export const baseUrl = 'https://shakespeare.podium.co'
+export const baseUrl = 'http://shakespeare.podium.co'
 
 export default async function (url = '', options = { method: 'GET' }) {
   let headers = new Headers(options.headers || {})
@@ -23,10 +23,7 @@ export default async function (url = '', options = { method: 'GET' }) {
 
 async function processResponse(response) {
   if (!response.ok) {
-    throw {
-      message: `Failed with status code ${response.status}`,
-      status: response.status
-    }
+    throw new Error(`Failed with status code ${response.status}`);
   }
 
   if (response.status === 204) {
