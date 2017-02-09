@@ -28,4 +28,18 @@ describe('Fetch Service', () => {
     let response = await fetchService('/some/path');
     expect(response).toEqual({});
   })
+
+  it('should throw an error on a status code of 400 or above', async () => {
+    let url = `${baseUrl}/some/bad/path`;
+    FetchMock.get(url, {status: 404})
+
+    try {
+      let response = await fetchService('/some/bad/path');
+    } catch (exception) {
+      expect(exception).toEqual({
+        message: 'Failed with status code 404',
+        status: 404
+      });
+    }
+  })
 })
