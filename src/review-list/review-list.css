@@ -1,5 +1,9 @@
+body {
+  background: orangered;
+}
 .list {
   width: 80%;
   max-width: 630px;
   margin: 0 auto;
+  background: white;
 }

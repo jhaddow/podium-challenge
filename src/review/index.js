@@ -14,11 +14,12 @@ const Review = (props) => {
   } = props;
 
   return (
-    <div className="review" onClick={handleClick}>
+    <div className="review">
       <div className="review__header">
         <div>Reviewer: {author}</div>
         <div>Date: {moment(publish_date).fromNow()}</div>
         <div>Rating: {rating}</div>
+        <div className="button" onClick={handleClick}>{isOpen ? 'Hide' : 'Show'} Comment</div>
       </div>
       {isOpen && <div className="review__body">Comment: {body}</div>}
     </div >

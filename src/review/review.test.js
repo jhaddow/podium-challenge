@@ -1,5 +1,5 @@
 import React from 'react'
-import {shallow} from 'enzyme'
+import { shallow } from 'enzyme'
 import Review from './index'
 import moment from 'moment'
 
@@ -10,7 +10,7 @@ describe('<Review />', () => {
     author: 'Fay Lemke'
   }
 
-  it('should render without error', ()=> {
+  it('should render without error', () => {
     const wrapper = shallow(<Review />);
 
     expect(wrapper.find('.review').length).toEqual(1);
@@ -20,9 +20,9 @@ describe('<Review />', () => {
     const wrapper = shallow(<Review {...minProps} />);
 
     expect(wrapper.contains([
-    <div>Reviewer: {minProps.author}</div>,
-    <div>Date: {moment(minProps.publish_date).fromNow()}</div>,
-    <div>Rating: {minProps.rating}</div>
+      <div>Reviewer: {minProps.author}</div>,
+      <div>Date: {moment(minProps.publish_date).fromNow()}</div>,
+      <div>Rating: {minProps.rating}</div>
     ])).toEqual(true);
     expect(wrapper.find('.review__body').length).toEqual(0);
   })
@@ -37,7 +37,7 @@ describe('<Review />', () => {
     let handleClickMock = jest.fn();
 
     const wrapper = shallow(<Review {...minProps} handleClick={handleClickMock} />);
-    wrapper.find('.review').simulate('click');
+    wrapper.find('.button').simulate('click');
 
     expect(handleClickMock).toBeCalled();
 
