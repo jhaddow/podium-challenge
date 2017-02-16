@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import fetchService from '../fetch';
 import Review from '../review'
 
+import './review-list.css';
 class ReviewList extends Component {
   constructor(props) {
     super(props);
@@ -21,7 +22,6 @@ class ReviewList extends Component {
   }
 
   handleClick = async index => {
-    console.log('clicked')
     let clickedReview = this.state.reviews[index];
     let updatedReview = {
       ...clickedReview,
@@ -53,7 +53,7 @@ class ReviewList extends Component {
       return <Review {...review} handleClick={() => this.handleClick(i)} key={review.id} />
     })
     return (
-      <div>
+      <div className="list">
         {reviews}
       </div>
     )
