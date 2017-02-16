@@ -18,7 +18,7 @@ const Review = (props) => {
       <div className="review__header">
         <div>Reviewer: {author}</div>
         <div>Date: {moment(publish_date).fromNow()}</div>
-        <div>Rating {rating}</div>
+        <div>Rating: {rating}</div>
       </div>
       {isOpen && <div className="review__body">Comment: {body}</div>}
     </div >

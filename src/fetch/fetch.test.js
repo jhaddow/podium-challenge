@@ -1,15 +1,12 @@
 import FetchMock from 'fetch-mock';
 import fetchService, { baseUrl } from './index'
+
 describe('Fetch Service', () => {
   let url;
   beforeEach(() => {
     url = baseUrl
     FetchMock
       .get(url, { key: 'GET RESPONSE' })
-      .head(url, { key: 'HEAD RESPONSE' })
-      .put(url, { key: 'PUT RESPONSE' })
-      .post(url, { key: 'POST RESPONSE' })
-      .delete(url, { key: 'value' })
   })
   afterEach(() => {
     FetchMock.restore();
@@ -36,10 +33,7 @@ describe('Fetch Service', () => {
     try {
       let response = await fetchService('/some/bad/path');
     } catch (exception) {
-      expect(exception).toEqual({
-        message: 'Failed with status code 404',
-        status: 404
-      });
+      expect(exception).toEqual(new Error('Failed with status code 404'));
     }
   })
 })
