@@ -17,19 +17,29 @@ describe('<Review />', () => {
   })
 
   it('should render a review header but no body if isOpen is false or undefined', () => {
-    const wrapper = shallow(<Review {...minProps} />)
+    const wrapper = shallow(<Review {...minProps} />);
 
     expect(wrapper.contains([
     <div>Reviewer: {minProps.author}</div>,
     <div>Date: {moment(minProps.publish_date).fromNow()}</div>,
     <div>Rating: {minProps.rating}</div>
-    ])).toEqual(true)
+    ])).toEqual(true);
     expect(wrapper.find('.review__body').length).toEqual(0);
   })
 
   it('should render a review body if isOpen is true', () => {
-    const wrapper = shallow(<Review {...minProps} isOpen={true} body="What's up?" />)
+    const wrapper = shallow(<Review {...minProps} isOpen={true} body="What's up?" />);
 
     expect(wrapper.find('.review__body').length).toEqual(1);
+  })
+
+  it('should call the handleClick prop when clicked', () => {
+    let handleClickMock = jest.fn();
+
+    const wrapper = shallow(<Review {...minProps} handleClick={handleClickMock} />);
+    wrapper.find('.review').simulate('click');
+
+    expect(handleClickMock).toBeCalled();
+
   })
 })
